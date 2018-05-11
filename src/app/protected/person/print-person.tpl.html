@@ -8,23 +8,19 @@
             </md-button>
         </div>
     </md-toolbar>
-    <md-dialog-content>
-        <div layout="row" layout-align="center" layout-padding flex>
-            <img src="/assets/images/logo.png" style="height: 60px;">
-        </div>
-        <div layout="column" layout-padding flex>
-            <div layout="row" layout-align="space-between center" flex>
+    <md-dialog-content class="size">
+        <div layout="row" layout-padding flex>
+            <div layout="column"  layout-align="space-around start" flex>
                 <div layout="row" layout-align="start end">
                     <span class="label">Nome: </span>
-                    <span class="value">{{ctrl.person.first_name}} {{ctrl.person.first_name}}</span>
+                    <span class="value">{{ctrl.person.first_name}}</span>
                 </div>
-                <img ng-src="{{ctrl.person.photo}}" class="md-avatar img-size" ng-if="ctrl.person.photo"
-                title="{{ctrl.person.first_name}}" alt="{{ctrl.person.first_name}}">
-                <img ng-src="{{'/assets/images/default-avatar.png'}}" class="md-avatar img-size" ng-if="!ctrl.person.photo"
-                title="{{ctrl.person.first_name}}" alt="{{ctrl.person.first_name}}">
-            </div>
-            <div layout="row" layout-align="space-between center" flex>
-                <div layout="row"  layout-align="start end">
+                <div layout="row" layout-align="start end">
+                    <span class="label">Sobrenome: </span>
+                    <span class="value">{{ctrl.person.last_name}}</span>
+                </div>
+
+                <div layout="row" layout-align="start end">
                     <span class="label">Igreja: </span>
                     <span class="value">{{ctrl.person.church}}</span>
                 </div>
@@ -33,20 +29,22 @@
                     <span class="value">{{ctrl.person.departure}}</span>
                 </div>
             </div>
-            <div layout="row" layout-align="center" flex>
-                <div id="boleto" style="width: 550px !important; height: 70px !important;">
+            <div layout="column" layout-align="space-between center">
+                <img ng-src="{{ctrl.person.photo}}" class="md-avatar img-size" ng-if="ctrl.person.photo" title="{{ctrl.person.first_name}}"
+                    alt="{{ctrl.person.first_name}}" style="max-height: 95px;max-width: 115px;">
+                <img ng-src="{{'/assets/images/default-avatar.png'}}" class="md-avatar img-size" ng-if="!ctrl.person.photo" title="{{ctrl.person.first_name}}"
+                    alt="{{ctrl.person.first_name}}" style="max-height: 95px;max-width: 115px;">
+                <div layout="column" layout-align="center" layout-padding flex>
+                    <svg id="barcode" jsbarcode-textmargin="0" style="padding: 0px;width: 100px;"></svg>
+                </div>
             </div>
-                
-            </div>
-            
         </div>
-
     </md-dialog-content>
     <md-dialog-actions layout="row">
         <md-button ng-click="ctrl.close()">
             Cancelar
         </md-button>
-        <md-button class="md-button md-accent"  ng-click="ctrl.print()">
+        <md-button class="md-button md-accent" ng-click="ctrl.print()">
             Imprimir
         </md-button>
     </md-dialog-actions>

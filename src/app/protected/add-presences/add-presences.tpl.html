@@ -10,16 +10,26 @@
         <div ng-show="!addPresencesCtrl.peoples.length" layout="row" layout-align="center" flex>
             <span class="not-results">Nenhuma pessoa cadastrada com esse codigo de barras!</span>
         </div>
-        <div ng-if="addPresencesCtrl.lastPresence">
-            <span>Ultima presença cadastrada</span>
-            <div layout="column">
-                <div layout="row" layout-align="spce-between center">
-                    <span>Nome: {{addPresencesCtrl.lastPresence.first_name}}</span>
-                    <span>Sobrenome: {{addPresencesCtrl.lastPresence.last_name}}</span>
+        <p>Ultima prensença cadastrada</p>
+        <div layout="column" ng-if="addPresencesCtrl.lastPresence" class="printer-person-dialog" layout-padding flex>
+            <div layout="row" layout-align="space-between center" flex>
+                <div layout="row" layout-align="start end">
+                    <span class="label">Nome: </span>
+                    <span class="value">{{addPresencesCtrl.lastPresence.first_name}} {{addPresencesCtrl.lastPresence.last_name}}</span>
                 </div>
-                <div layout="row" layout-align="spce-between center">
-                    <span>Igreja: {{addPresencesCtrl.lastPresence.church}}</span>
-                    <span>Departamento: {{addPresencesCtrl.lastPresence.departure}}</span>
+                <img ng-src="{{addPresencesCtrl.lastPresence.photo}}" class="md-avatar img-size" ng-if="addPresencesCtrl.lastPresence.photo" title="{{addPresencesCtrl.lastPresence.first_name}}"
+                    alt="{{addPresencesCtrl.lastPresence.first_name}}">
+                <img ng-src="{{'/assets/images/default-avatar.png'}}" class="md-avatar img-size" ng-if="!addPresencesCtrl.lastPresence.photo" title="{{addPresencesCtrl.lastPresence.first_name}}"
+                    alt="{{addPresencesCtrl.lastPresence.first_name}}">
+            </div>
+            <div layout="row" layout-align="space-between center" flex>
+                <div layout="row" layout-align="start end">
+                    <span class="label">Igreja: </span>
+                    <span class="value">{{addPresencesCtrl.lastPresence.church}}</span>
+                </div>
+                <div layout="row" layout-align="start end">
+                    <span class="label">Departamento: </span>
+                    <span class="value">{{addPresencesCtrl.lastPresence.departure}}</span>
                 </div>
             </div>
         </div>

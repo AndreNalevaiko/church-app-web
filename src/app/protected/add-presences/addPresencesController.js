@@ -10,13 +10,14 @@ angular.module('gorillasauth.protected.add-presences')
       self.registryPresence = function () {
         console.log('registra a presença');
 
-        // PersonService.registryPresence({barcode: self.barcode}).then(function (response){
-        //   self.lastPresence = response;
-        //   self.barcode = null;
-        // }, function (error){
-        //   self.lastPresence = null;
-        //   self.barcode = null;
-        // });
+        PersonService.registryPresence({barcode: self.barcode}).then(function (response){
+          self.lastPresence = response.data;
+          self.barcode = null;
+          $scope.$apply();
+        }, function (error){
+          self.lastPresence = null;
+          self.barcode = null;
+        });
       };
       
     }

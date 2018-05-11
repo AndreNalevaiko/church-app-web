@@ -24,6 +24,10 @@ angular.module('gorillasauth.services.person', [
                 }
             };
 
+            this.registryPresence = function (barcode){
+                return $http.post(configuration.apiUrl + '/person' +'/_add_presence', {barcode: barcode});
+            };
+
         }
     ])
 ;

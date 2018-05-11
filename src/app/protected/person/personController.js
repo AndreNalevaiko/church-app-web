@@ -190,11 +190,13 @@ angular.module('gorillasauth.protected.person')
       var self = this;
       self.person = person;
 
-
-      setTimeout(function(){ 
-        var number = "03399103177839181121943600101018575120000069742";
-        new Boleto(number).toSVG('#boleto');
-      }, 1000);
+      if (self.person.barcode){
+        setTimeout(function(){ 
+          // var number = "03399103177839181121943600101018575120000069742";
+          // new Boleto(number).toSVG('#boleto');
+            new JsBarcode("#barcode", self.person.barcode);
+        }, 1000);
+      }
 
       self.close = function () {
         $mdDialog.cancel();

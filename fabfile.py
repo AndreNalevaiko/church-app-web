@@ -10,9 +10,7 @@ def run():
     local('grunt watch')
 
 @task
-def build(self, VERSION=None):
-        'Constrói container docker do componente para produção'
-        if not VERSION: VERSION = VERSION
+def build():
         
         local('docker build -t %s:%s --rm .' % (CONTAINER_NAME, VERSION))
             
