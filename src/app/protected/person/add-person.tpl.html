@@ -1,7 +1,7 @@
 <md-dialog class="add-person-dialog" aria-label="Barcode Dialog">
         <md-toolbar class="md-accent">
             <div class="md-toolbar-tools">
-                <h2>{{ctrl.title}}</h2>
+                <h2>Adicionar pessoa</h2>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="ctrl.close()">
                     <md-icon md-font-icon="material-icons" aria-label="Fechar">close</md-icon>
@@ -15,17 +15,34 @@
                     <div layout="row" class="input-params  space-bottom">
                         <md-input-container flex>
                             <label>Nome</label>
-                            <input ng-model="ctrl.person.name" required>
+                            <input ng-model="ctrl.person.first_name" required>
+                        </md-input-container>
+                        <!-- <a class="profile-photo md-button" ngf-select="ctrl.selectProfilePhoto($file, $event)">
+                            <img ng-src="{{ctrl.person.photo || '/assets/images/default-avatar.png'}}" class="md-avatar"
+                                    title="{{ctrl.person.first_name}}" alt="{{ctrl.person.first_name}}">
+                        
+                            <div class="change-photo" layout="row" layout-align="center center">
+                                <md-icon md-font-icon="material-icons" aria-label="Alterar a foto">photo_camera
+                                </md-icon>
+                            </div>
+                        
+                            <md-tooltip>Alterar a foto</md-tooltip>
+                        </a> -->
+                    </div>
+                    <div layout="row" class="input-params  space-bottom">
+                        <md-input-container flex>
+                            <label>Sobrenome</label>
+                            <input ng-model="ctrl.person.last_name" required>
                         </md-input-container>
                     </div>
                     <div layout="row" class="input-params">
                         <md-input-container>
-                            <label>Telefone</label>
-                            <input ng-model="ctrl.person.phone">
+                            <label>Igreja</label>
+                            <input ng-model="ctrl.person.church">
                         </md-input-container>
                         <md-input-container>
-                            <label>Cargo</label>
-                            <input ng-model="ctrl.person.occupation">
+                            <label>Departamento</label>
+                            <input ng-model="ctrl.person.departure">
                         </md-input-container>
                     </div>
                     <div layout="row" class="input-params">
@@ -34,12 +51,12 @@
                             <input ng-model="ctrl.person.email">
                         </md-input-container>
                     </div>
-                    <!-- <div layout="row" class="input-params">
+                    <div layout="row" class="input-params">
                         <md-input-container flex>
-                            <label>barcode</label>
+                            <label>Codigo de barras</label>
                             <input ng-model="ctrl.person.barcode">
                         </md-input-container>
-                    </div> -->
+                    </div>
                 </div>
             </form>
     

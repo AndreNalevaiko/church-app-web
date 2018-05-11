@@ -27,25 +27,34 @@
                             </th>
 
                             <th md-column>
-                                Email
+                                Sobrenome
                             </th>
 
                             <th md-column>
-                                Telefone
+                                Igreja
                             </th>
 
                             <th md-column>
-                                Cargo
+                                Departamento
+                            </th>
+
+                            <th md-column>
+                                Presenças
                             </th>
 
                         </tr>
                     </thead>
                     <tbody md-body>
                         <tr md-row ng-repeat="person in personCtrl.peoples | orderBy: 'name'">
-                            <td md-cell>{{person.name}}</td>
-                            <td md-cell>{{person.email}}</td>
-                            <td md-cell>{{person.phone}}</td>
-                            <td md-cell>{{person.occupation}}</td>
+                            <td md-cell>{{person.first_name}}</td>
+                            <td md-cell>{{person.last_name}}</td>
+                            <td md-cell>{{person.church}}</td>
+                            <td md-cell>{{person.departure}}</td>
+                            <td md-cell>{{person.presences}} 
+                                <md-button ng-click="personCtrl.editPerson($event, person)">
+                                    <md-icon>edit</md-icon>
+                                </md-button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

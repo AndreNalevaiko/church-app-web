@@ -6,13 +6,13 @@
   </div>
 
   <md-list>
-    <md-list-item ui-sref="protected.person">
+    <md-list-item ui-sref="protected.person" ng-class="{ active: $state.includes('protected.add-presences') }">
       <md-icon md-font-icon="material-icons" aria-label="Meus Apps">view_module</md-icon>
       <p>Pessoas</p>
     </md-list-item>
 
-    <md-list-item ui-sref="protected.person"
-                  ng-class="{ active: $state.includes('protected.person') }">
+    <md-list-item ui-sref="protected.add-presences"
+                  ng-class="{ active: $state.includes('protected.add-presences') }">
       <md-icon md-font-icon="material-icons" aria-label="Usuários">timeline</md-icon>
       <p>Chamada</p>
     </md-list-item>

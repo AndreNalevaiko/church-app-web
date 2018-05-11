@@ -16,14 +16,12 @@ angular.module('gorillascode.resource', [
                     patch: {
                         method: 'PATCH',
                         headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
-                        transformResponse: JsonApiHelper.fromObject
                     },
-                    query: {method: 'GET', headers: {'Accept': 'application/json'}, isArray: false, transformResponse: transformResponseQuery},
-                    get: {method: 'GET',headers: {'Accept': 'application/json'} , transformResponse: JsonApiHelper.fromObject},
+                    query: {method: 'GET', headers: {'Accept': 'application/json'}, isArray: false},
+                    get: {method: 'GET',headers: {'Accept': 'application/json'} },
                     save: {
                         method: 'POST',
                         headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
-                        transformResponse: JsonApiHelper.fromObject
                     }
                 };
                 if (resourceName == 'v1/user/_signin' || resourceName == 'v1/user/password/_reset' || resourceName == 'v1/user/password/_change'){

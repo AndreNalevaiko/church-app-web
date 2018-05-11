@@ -10,14 +10,14 @@ angular.module('gorillasauth.protected.person')
         self.requesting = true;
         var params = null;
         if (self.searchText) {
+          var likeStr = '%' + self.searchText + '%';
           params = {
             q: {
               filters: [
-                {
-                  name: 'name',
-                  op: 'like',
-                  val: '%' + self.searchText + '%'
-                }
+                {"or":[
+                  {"name":"first_name","op":"like","val":likeStr},
+                  {"name":"last_name","op":"like","val":likeStr}
+                ]}
               ]
             }
           };
@@ -57,8 +57,6 @@ angular.module('gorillasauth.protected.person')
         };
 
         $mdDialog.show(dialog).then(function (result) {
-          result.active = true;
-
           PersonService.save(result).then(function (response) {
             NotificationService.success('Pessoa adicionada sucesso.');
             $state.reload();
@@ -98,6 +96,23 @@ angular.module('gorillasauth.protected.person')
       var self = this;
       self.person = {};
 
+      self.selectProfilePhoto = function (file, event) {
+        if (!file) {
+          return;
+        }
+        var reader  = new FileReader();
+
+        reader.readAsDataURL(file);
+        reader.onload = function () {
+          console.log(reader.result);
+          self.person.photo = reader.result;
+        };
+        reader.onerror = function (error) {
+          console.log('Error: ', error);
+        };
+      };
+
+
       self.close = function () {
         $mdDialog.cancel();
       };
@@ -105,6 +120,61 @@ angular.module('gorillasauth.protected.person')
       self.save = function () {
         $mdDialog.hide(self.person);
       };
+
+      function getBase64(file) {
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function () {
+          console.log(reader.result);
+        };
+        reader.onerror = function (error) {
+          console.log('Error: ', error);
+        };
+     }
+    }
+  ])
+
+
+  .controller('EditPersonController', ['$scope', 'PersonService', '$mdDialog', 'person',
+    function ($scope, PersonService, $mdDialog, person) {
+      var self = this;
+      self.person = person;
+
+      self.selectProfilePhoto = function (file, event) {
+        if (!file) {
+          return;
+        }
+        var reader  = new FileReader();
+
+        reader.readAsDataURL(file);
+        reader.onload = function () {
+          console.log(reader.result);
+          self.person.photo = reader.result;
+        };
+        reader.onerror = function (error) {
+          console.log('Error: ', error);
+        };
+      };
+
+
+      self.close = function () {
+        $mdDialog.cancel();
+      };
+
+      self.save = function () {
+        $mdDialog.hide(self.person);
+      };
+
+      function getBase64(file) {
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function () {
+          console.log(reader.result);
+        };
+        reader.onerror = function (error) {
+          console.log('Error: ', error);
+        };
+     }
     }])
 
   ;
