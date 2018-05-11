@@ -8,7 +8,6 @@ angular.module('gorillasauth')
         environment: 'development',
         hostnames: ['localhost'],
         apiUrl: 'http://localhost:5000',
-        business_alias: {1: 'Curitiba', 2: 'Pato Branco', 6: 'Cascavel'}
       }
     };
 
@@ -20,6 +19,14 @@ angular.module('gorillasauth')
       });
     });
 
+    if (!config) {
+      var hostname = window.location.hostname;
+        config = {
+          environment: 'development',
+          hostnames: [hostname],
+          apiUrl: 'http://' + hostname + ':5000',
+      };
+    }
     if (!config) {
       throw new Error('Configuração não encontrada para o ambiente');
     }

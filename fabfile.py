@@ -1,10 +1,34 @@
 # -*- coding: utf-8 -*-
 from fabric.api import task, run, local
 
-VERSION = '1.4.1'
-CONTAINER_NAME = 'optilab-bi-app-web'
-IMAGE_NAME = 'optilab-bi/%s' % CONTAINER_NAME
+VERSION = '1.0.2'
+CONTAINER_NAME = 'church-app-web'
+IMAGE_NAME = 'church-app-web%s' % CONTAINER_NAME
 
 @task
 def run():
     local('grunt watch')
+
+@task
+def build(self, VERSION=None):
+        'Constrói container docker do componente para produção'
+        if not VERSION: VERSION = VERSION
+        
+        local('docker build -t %s:%s --rm .' % (CONTAINER_NAME, VERSION))
+            
+        local('docker tag %s:%s %s:latest' % (CONTAINER_NAME, VERSION, CONTAINER_NAME))
+@task
+def push():
+    'Contrói container docker de produção e realiza upload: call_build=True'
+
+    int_VERSION = int(VERSION.replace('.', ''))
+
+    # if int_VERSION != 100 and int_VERSION > 1:
+    #     local('docker pull andrenalevaiko/%s:latest' % CONTAINER_NAME)
+    #     local('docker tag andrenalevaiko/%s:latest andrenalevaiko/%s:backup' % (CONTAINER_NAME, CONTAINER_NAME))
+    #     local('docker push andrenalevaiko/%s:backup' % CONTAINER_NAME)
+
+    local('docker tag %s:%s andrenalevaiko/%s:%s' % (CONTAINER_NAME, VERSION, CONTAINER_NAME, VERSION))
+    local('docker tag %s:%s andrenalevaiko/%s:latest' % (CONTAINER_NAME,VERSION, CONTAINER_NAME))
+    local('docker push andrenalevaiko/%s:%s' % (CONTAINER_NAME, VERSION))
+    local('docker push andrenalevaiko/%s:latest' % CONTAINER_NAME)
