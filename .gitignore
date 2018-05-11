@@ -7,3 +7,4 @@ bin/
 logs/
 node_modules/
 vendor/
+fabfile.pyc
