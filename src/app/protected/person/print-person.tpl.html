@@ -10,7 +10,7 @@
     </md-toolbar>
     <md-dialog-content>
         <div layout="row" layout-align="center" layout-padding flex>
-            <img src="/assets/images/logo.png" style="height: 80px;">
+            <img src="/assets/images/logo.png" style="height: 60px;">
         </div>
         <div layout="column" layout-padding flex>
             <div layout="row" layout-align="space-between center" flex>
@@ -18,6 +18,10 @@
                     <span class="label">Nome: </span>
                     <span class="value">{{ctrl.person.first_name}} {{ctrl.person.first_name}}</span>
                 </div>
+                <img ng-src="{{ctrl.person.photo}}" class="md-avatar img-size" ng-if="ctrl.person.photo"
+                title="{{ctrl.person.first_name}}" alt="{{ctrl.person.first_name}}">
+                <img ng-src="{{'/assets/images/default-avatar.png'}}" class="md-avatar img-size" ng-if="!ctrl.person.photo"
+                title="{{ctrl.person.first_name}}" alt="{{ctrl.person.first_name}}">
             </div>
             <div layout="row" layout-align="space-between center" flex>
                 <div layout="row"  layout-align="start end">
