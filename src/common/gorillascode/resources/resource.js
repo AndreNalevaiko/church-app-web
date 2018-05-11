@@ -15,14 +15,14 @@ angular.module('gorillascode.resource', [
                 var actions = {
                     patch: {
                         method: 'PATCH',
-                        headers: {'Content-Type': 'application/vnd.api+json', 'Accept': 'application/vnd.api+json'},
+                        headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
                         transformResponse: JsonApiHelper.fromObject
                     },
-                    query: {method: 'GET', headers: {'Accept': 'application/vnd.api+json'}, isArray: false, transformResponse: transformResponseQuery},
-                    get: {method: 'GET',headers: {'Accept': 'application/vnd.api+json'} , transformResponse: JsonApiHelper.fromObject},
+                    query: {method: 'GET', headers: {'Accept': 'application/json'}, isArray: false, transformResponse: transformResponseQuery},
+                    get: {method: 'GET',headers: {'Accept': 'application/json'} , transformResponse: JsonApiHelper.fromObject},
                     save: {
                         method: 'POST',
-                        headers: {'Content-Type': 'application/vnd.api+json', 'Accept': 'application/vnd.api+json'},
+                        headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
                         transformResponse: JsonApiHelper.fromObject
                     }
                 };
@@ -38,7 +38,7 @@ angular.module('gorillascode.resource', [
 
                     // Se a chamada for para /exists então retorna a resposta sem modificações
                     if (subResourceName != 'exists') {
-                        actions.get = {method: 'GET', headers: {'Accept': 'application/vnd.api+json'}, transformResponse: transformResponseQuery};
+                        actions.get = {method: 'GET', headers: {'Accept': 'application/json'}, transformResponse: transformResponseQuery};
                     }
                 }
 

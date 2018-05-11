@@ -21,6 +21,7 @@ angular.module('gorillasauth', [
   'gorillasauth.services.user-management',
   'gorillasauth.services.file',
   'gorillasauth.services.role',
+  'gorillasauth.services.person',
   'gorillasauth.public',
   'gorillasauth.protected'
 ])
@@ -28,7 +29,7 @@ angular.module('gorillasauth', [
   .config(['$urlRouterProvider', '$httpProvider', '$mdThemingProvider', 'cfpLoadingBarProvider',
 
     function ($urlRouterProvider, $httpProvider, $mdThemingProvider, cfpLoadingBarProvider) {
-      $urlRouterProvider.otherwise('/dashboard');
+      $urlRouterProvider.otherwise('/person');
       $httpProvider.interceptors.push('AuthInterceptor');
       cfpLoadingBarProvider.includeSpinner = false;
 

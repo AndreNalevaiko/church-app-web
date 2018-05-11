@@ -2,6 +2,7 @@ angular.module('gorillasauth.protected', [
   'ui.router',
   'gorillasauth.protected.dashboard',
   'gorillasauth.protected.oauthconfirm',
+  'gorillasauth.protected.person',
   'gorillasauth.protected.user-management',
   'gorillasauth.protected.profile-photo',
   'gorillasauth.protected.profile',

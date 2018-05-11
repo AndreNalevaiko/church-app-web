@@ -1,20 +1,20 @@
 
 <md-content flex role="navigation">
   <div layout="row" layout-align="center" layout-padding flex>
-    <img src="/assets/images/logo-footer.png">
+    <img src="/assets/images/logo.png" style="height: 80px;">
 
   </div>
 
   <md-list>
-    <md-list-item ui-sref="protected.dashboard">
+    <md-list-item ui-sref="protected.person">
       <md-icon md-font-icon="material-icons" aria-label="Meus Apps">view_module</md-icon>
-      <p>Resumo</p>
+      <p>Pessoas</p>
     </md-list-item>
 
-    <md-list-item ui-sref="protected.user-management"
-                  ng-class="{ active: $state.includes('protected.user-management') }">
+    <md-list-item ui-sref="protected.person"
+                  ng-class="{ active: $state.includes('protected.person') }">
       <md-icon md-font-icon="material-icons" aria-label="Usuários">timeline</md-icon>
-      <p>Gráficos</p>
+      <p>Chamada</p>
     </md-list-item>
   </md-list>
 </md-content>

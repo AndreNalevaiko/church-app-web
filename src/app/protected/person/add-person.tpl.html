@@ -1,0 +1,58 @@
+<md-dialog class="add-person-dialog" aria-label="Barcode Dialog">
+        <md-toolbar class="md-accent">
+            <div class="md-toolbar-tools">
+                <h2>{{ctrl.title}}</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="ctrl.close()">
+                    <md-icon md-font-icon="material-icons" aria-label="Fechar">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+    
+            <form name="form" layout="column" layout-padding="">
+                <div layout="column">
+                    <div layout="row" class="input-params  space-bottom">
+                        <md-input-container flex>
+                            <label>Nome</label>
+                            <input ng-model="ctrl.person.name" required>
+                        </md-input-container>
+                    </div>
+                    <div layout="row" class="input-params">
+                        <md-input-container>
+                            <label>Telefone</label>
+                            <input ng-model="ctrl.person.phone">
+                        </md-input-container>
+                        <md-input-container>
+                            <label>Cargo</label>
+                            <input ng-model="ctrl.person.occupation">
+                        </md-input-container>
+                    </div>
+                    <div layout="row" class="input-params">
+                        <md-input-container flex>
+                            <label>Email</label>
+                            <input ng-model="ctrl.person.email">
+                        </md-input-container>
+                    </div>
+                    <!-- <div layout="row" class="input-params">
+                        <md-input-container flex>
+                            <label>barcode</label>
+                            <input ng-model="ctrl.person.barcode">
+                        </md-input-container>
+                    </div> -->
+                </div>
+            </form>
+    
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button ng-click="ctrl.close()">
+                Cancelar
+            </md-button>
+            <md-button class="md-button md-accent"
+                       ng-disabled="form.$invalid || ctrl.sending"
+                       ng-click="ctrl.save()">
+                Confirmar
+            </md-button>
+        </md-dialog-actions>
+    
+    </md-dialog>
