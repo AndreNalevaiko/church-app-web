@@ -7,11 +7,8 @@
             </md-input-container>
 
         </div>
-        <div ng-show="!addPresencesCtrl.peoples.length" layout="row" layout-align="center" flex>
-            <span class="not-results">Nenhuma pessoa cadastrada com esse codigo de barras!</span>
-        </div>
-        <p>Ultima prensença cadastrada</p>
         <div layout="column" ng-if="addPresencesCtrl.lastPresence" class="printer-person-dialog" layout-padding flex>
+            <p>Ultima prensença cadastrada</p>
             <div layout="row" layout-align="space-between center" flex>
                 <div layout="row" layout-align="start end">
                     <span class="label">Nome: </span>
