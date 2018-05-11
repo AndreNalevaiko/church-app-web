@@ -1,19 +1,22 @@
-<div class="church-api-person" layout-padding flex>
+<div class="church-api-person" id="printable" layout-padding flex>
     <md-card layout-padding flex>
-        <div layout="row" flex>
-            <md-input-container class="input-search" flex>
-                <label>Pesquisa por nome</label>
-                <input ng-model="personCtrl.searchText">
-            </md-input-container>
-            <md-button class="md-icon-button" ng-click="personCtrl.searchByName()">
-                <md-icon>search</md-icon>
-                <md-tooltip>Pesquisar</md-tooltip>
-            </md-button>
-            <md-button class="md-icon-button" ng-click="personCtrl.refresh()">
-                <md-icon>close</md-icon>
-                <md-tooltip>Limpar</md-tooltip>
-            </md-button>
-        </div>
+            <div layout="row" flex>
+                <md-input-container class="input-search" flex>
+                    <label>Pesquisa por nome</label>
+                    <input ng-model="personCtrl.searchText">
+                </md-input-container>
+                <md-button class="md-icon-button" ng-click="personCtrl.searchByName()">
+                    <md-icon>search</md-icon>
+                    <md-tooltip>Pesquisar</md-tooltip>
+                </md-button>
+                <md-button class="md-icon-button" ng-click="personCtrl.refresh()">
+                    <md-icon>close</md-icon>
+                    <md-tooltip>Limpar</md-tooltip>
+                </md-button>
+                <md-button ng-click="personCtrl.printDiv()">
+                    Print
+                </md-button>
+            </div>
         <div ng-show="!personCtrl.peoples.length" layout="row" layout-align="center" flex>
             <span class="not-results">Nenhuma pessoa cadastrada!</span>
         </div>
@@ -53,6 +56,9 @@
                             <td md-cell>{{person.presences}} 
                                 <md-button ng-click="personCtrl.editPerson($event, person)">
                                     <md-icon>edit</md-icon>
+                                </md-button>
+                                <md-button ng-click="personCtrl.printIdentifier($event, person)">
+                                    imprimer
                                 </md-button>
                             </td>
                         </tr>

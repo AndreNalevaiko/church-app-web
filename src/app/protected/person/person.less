@@ -19,7 +19,7 @@
         font-size: 20px;
         color: #2b5a71;
     }
-    
+
     .input-search{
         margin: 0px
     }
@@ -29,4 +29,25 @@
 
 .add-person-dialog{
 
+}
+
+.printer-person-dialog{
+
+    .label{
+        font-size: 30px;
+    }
+
+    .value{
+        font-size: 20px;
+        font-weight: 300;
+    }
+
+    @media print{
+        md-toolbar{
+            visibility: hidden;
+        }
+        md-dialog-actions{
+            visibility: hidden;
+        }
+    }
 }

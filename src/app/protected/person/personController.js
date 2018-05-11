@@ -88,6 +88,35 @@ angular.module('gorillasauth.protected.person')
         });
 
       };
+
+      self.printIdentifier = function (ev, person){
+        var dialog = {
+          controller: 'PrintController as ctrl',
+          locals: {
+            person: person
+          },
+          templateUrl: 'protected/person/print-person.tpl.html',
+          parent: angular.element(document.body),
+          targetEvent: ev,
+          clickOutsideToClose: true,
+          fullscreen: true
+        };
+
+        $mdDialog.show(dialog).then(function (result) {
+
+        });
+      };
+
+      self.printDiv = function() { 
+        var headstr = "<html><head><title></title></head><body>";
+        var footstr = "</body>";
+        var newstr = document.all.item('printable').innerHTML;
+        var oldstr = document.body.innerHTML;
+        document.body.innerHTML = headstr + newstr + footstr;
+        window.print();
+        document.body.innerHTML = oldstr;
+        return false;
+      };
     }
   ])
 
@@ -130,7 +159,7 @@ angular.module('gorillasauth.protected.person')
         reader.onerror = function (error) {
           console.log('Error: ', error);
         };
-     }
+      }
     }
   ])
 
@@ -174,7 +203,29 @@ angular.module('gorillasauth.protected.person')
         reader.onerror = function (error) {
           console.log('Error: ', error);
         };
-     }
+      }
+
+    }])
+  .controller('PrintController', ['$scope', 'PersonService', '$mdDialog', 'person',
+    function ($scope, PersonService, $mdDialog, person) {
+      var self = this;
+      self.person = person;
+
+
+      setTimeout(function(){ 
+        var number = "03399103177839181121943600101018575120000069742";
+        new Boleto(number).toSVG('#boleto');
+      }, 1000);
+
+      self.close = function () {
+        $mdDialog.cancel();
+      };
+
+      self.print = function () {
+          window.print();
+      };
+
+
     }])
 
   ;
