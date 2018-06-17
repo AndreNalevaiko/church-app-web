@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from fabric.api import task, run, local
 
-VERSION = '1.0.2'
+VERSION = '1.0.3'
 CONTAINER_NAME = 'church-app-web'
 IMAGE_NAME = 'church-app-web%s' % CONTAINER_NAME
 
