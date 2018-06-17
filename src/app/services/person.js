@@ -7,12 +7,28 @@ angular.module('gorillasauth.services.person', [
 
             var Person = new ResourceFactory(configuration.apiUrl, 'v1/person');
 
-            this.get = function (searchParameters) {
-                if (!searchParameters) {
-                    searchParameters = {};
-                }
-                
-                return Person.get(searchParameters).$promise;
+            this.get = function (params) {
+                var parameters = {
+                    q: {
+                      filters: params.filters ? params.filters : [],
+                      order_by: [{
+                        field: params.order.replace("-", ""),
+                        direction: params.order.startsWith("-") ? "desc" : "asc"
+                      }]
+                    },
+                    page: params.page,
+                    results_per_page: params.limit
+                  };
+          
+                  return Person.get(parameters).$promise.then(function (response) {
+          
+                    return {
+                      result: response.objects,
+                      limit: response.num_results,
+                      page: response.page,
+                      total_pages: response.total_pages
+                    };
+                  });
             };
 
             this.save = function (person) {

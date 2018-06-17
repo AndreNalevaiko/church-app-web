@@ -6,25 +6,34 @@ angular.module('gorillasauth.protected.person')
       self.requesting = false;
       self.searchText = null;
 
+      $scope.query = {
+        limit: 10,
+        page: 1,
+        filters: [],
+        last_page: 1,
+        order: self.searchParams ? self.searchParams.order : '-first_name'
+      };
+
+      $scope.$watch(function () {
+        return $scope.query.page;
+      }, function (newVal, oldVal) {
+        if (newVal && newVal != oldVal) {
+          search();
+        }
+      });
+
       self.searchByName = function () {
         self.requesting = true;
         var params = null;
         if (self.searchText) {
           var likeStr = '%' + self.searchText + '%';
-          params = {
-            q: {
-              filters: [
+          $scope.query.filters.push(
                 {"or":[
                   {"name":"first_name","op":"like","val":likeStr},
                   {"name":"last_name","op":"like","val":likeStr}
-                ]}
-              ]
-            }
-          };
-          PersonService.get(params).then(function (response) {
-            self.peoples = response.objects;
-            self.requesting = false;
-          });
+                ]});
+          search();
+          $scope.query.filters = [];
         } else {
           NotificationService.error('Digite o nome no campo de busca');
         }
@@ -38,8 +47,9 @@ angular.module('gorillasauth.protected.person')
       function search() {
         self.requesting = true;
 
-        PersonService.get().then(function (response) {
-          self.peoples = response.objects;
+        PersonService.get($scope.query).then(function (response) {
+          self.peoples = response;
+          $scope.query.last_page = response.total_pages;
           self.requesting = false;
         });
       }
